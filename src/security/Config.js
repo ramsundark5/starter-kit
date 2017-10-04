@@ -1,0 +1,3 @@
+export const FIREBASE_API_KEY = "AIzaSyBpKnr4ukNaIklprkTUSADIKGqufVYQyd0"
+export const FIREBASE_MESSAGING_SENDER_ID = "905764514309"
+export const ZOMATO_API_KEY = "dcf6b5363f359788eb6af0512c1c7dfe"

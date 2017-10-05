@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { resetErrorMessage } from '../actions/CommonActions'
-import { Header, Icon } from 'semantic-ui-react'
+import HeaderComponent from '../components/HeaderComponent'
 
 class Home extends Component {
   static propTypes = {
@@ -20,13 +20,7 @@ class Home extends Component {
     const { children } = this.props
     return (
       <div>
-        <Header as='h2' icon>
-          <Icon name='settings' />
-          Account Settings
-          <Header.Subheader>
-            Manage your account settings and set e-mail preferences.
-          </Header.Subheader>
-        </Header>
+        <HeaderComponent/>
         <span> Hello world </span>
       </div>
     )

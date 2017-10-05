@@ -19,7 +19,7 @@ class HeaderComponent extends Component {
     return (
       <Segment clearing attached='top' >
           <Header as='h4' floated='left'>
-             Home1
+             Home123
           </Header>
           <Header as='h4' floated='right'>
             <Icon name='settings' />

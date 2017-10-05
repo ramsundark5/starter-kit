@@ -5,8 +5,10 @@ import Root from './containers/Root'
 import configureStore from './store/configureStore'
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux'
+import FirebaseConfig from './security/FirebaseConfig'
 
-//const store = configureStore()
+
+FirebaseConfig.init()
 
 ReactDOM.render(
   <Provider store={configureStore}>

@@ -6,10 +6,10 @@ import configureStore from './store/configureStore'
 import 'semantic-ui-css/semantic.min.css'
 import { Provider } from 'react-redux'
 
-const store = configureStore()
+//const store = configureStore()
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={configureStore}>
     <Root />
   </Provider>,
   document.getElementById('root')
@@ -18,7 +18,7 @@ ReactDOM.render(
 if (module.hot) {
   module.hot.accept('./containers/Root', () => {
     ReactDOM.render(
-      <Provider store={store}>
+      <Provider store={configureStore}>
         <Root />
       </Provider>,
       document.getElementById('root')

@@ -9,4 +9,4 @@ const configureStore = preloadedState => createStore(
   applyMiddleware(thunk, api)
 )
 
-export default configureStore
+export default new configureStore()

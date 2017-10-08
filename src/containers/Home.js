@@ -2,10 +2,6 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
-import { resetErrorMessage } from '../actions/CommonActions'
-import HeaderComponent from '../components/HeaderComponent'
 
 class Home extends Component {
   static propTypes = {
@@ -13,7 +9,7 @@ class Home extends Component {
   }
 
   render() {
-    const { children } = this.props
+    //const { children } = this.props
     return (
       <div>
         <span> Hello world </span>

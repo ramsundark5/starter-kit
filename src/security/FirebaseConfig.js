@@ -1,8 +1,6 @@
 import firebase from 'firebase'
 import firebaseui from 'firebaseui'
 import * as Config from './Config'
-import * as UserActions from '../actions/UserActions'
-import store from '../store/configureStore'
 
 const config = {
     apiKey: Config.FIREBASE_API_KEY,
@@ -24,15 +22,15 @@ class FirebaseConfig{
       return this.authUI
   }
 
-  getUIConfig(){
-    const self = this
+  getUIConfig(loginAction){
     const uiConfig = {
       callbacks: {
         signInSuccess: function(currentUser, credential, redirectUrl) {
           // Do something.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
-          store.dispatch(UserActions.login(currentUser));
+          //store.dispatch(UserActions.login(currentUser));
+          loginAction(currentUser)
           //return true;
         }
       },

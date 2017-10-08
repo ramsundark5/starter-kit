@@ -1,27 +1,27 @@
 /* eslint-disable no-undef */
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
-import { Header, Icon, Segment } from 'semantic-ui-react'
-import { userIsAuthenticatedRedir, userIsNotAuthenticatedRedir, userIsAdminRedir,
-  userIsAuthenticated, userIsNotAuthenticated } from '../security/Auth'
+import { Link } from 'react-router-dom'
+import { Header, Icon, Segment, Label } from 'semantic-ui-react'
+import { userIsAuthenticated, userIsNotAuthenticated } from '../security/Auth'
 import * as UserActions from '../actions/UserActions'
 
-//const UserName = ({ user }) => (<div className={styles.username}>{getUserName(user)}</div>)
-const LoginLink = userIsNotAuthenticated(() => <Link  to="/login">Login</Link>)
-const LogoutLink = userIsAuthenticated(({ logoutFn }) => <a href="#" onClick={() => logoutFn()}>Logout</a>)
+const LoginLink = userIsNotAuthenticated(() => <Link  to="/login">Sign in</Link>)
+const LogoutLink = userIsAuthenticated(({ logoutFn }) => <a href="javascript:void(0)" onClick={() => logoutFn()}>Logout</a>)
+const UserName = userIsAuthenticated(({ user }) => (
+  <div>
+    <Label>
+      <Icon name='user'/> {getUserName(user)}
+    </Label>
+  </div>
+))
 
 class HeaderComponent extends Component {
 
-  constructor(props, context) {
-    super(props, context)
-  }
-
   render() {
-    const { children, actions } = this.props
+    const { actions, user } = this.props
     return (
       <Segment clearing attached='top' >
           <Header as='h4' floated='left'>
@@ -29,13 +29,20 @@ class HeaderComponent extends Component {
             <Link to="/profile">Profile</Link>
           </Header>
           <Header as='h4' floated='right'>
-            <Icon name='settings' />
             <LoginLink />
-            <LogoutLink logoutFn={actions.logout} />
+            <UserName user={user}/>
+            <LogoutLink logoutFn={actions.logout} user={user}/>
           </Header>
       </Segment>
     )
   }
+}
+
+const getUserName = user => {
+  if (user) {
+    return `Hi, ${user.displayName}`
+  }
+  return null
 }
 
 const mapStateToProps = (state, ownProps) => ({

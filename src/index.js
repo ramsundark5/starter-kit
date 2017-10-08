@@ -20,7 +20,7 @@ ReactDOM.render(
 )
 
 if (module.hot) {
-  module.hot.accept('./containers/Root', () => {
+  module.hot.accept('./containers/AppContainer', () => {
     ReactDOM.render(
       <Provider store={configureStore}>
         <Router>

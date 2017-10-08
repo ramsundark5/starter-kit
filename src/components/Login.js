@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../actions/UserActions'
 import FirebaseConfig from '../security/FirebaseConfig'
-import firebase from 'firebase'
 import 'firebaseui/dist/firebaseui.css'
-import { Header, Image, Modal, Button, Icon } from 'semantic-ui-react'
+import { bindActionCreators } from 'redux'
+import * as UserActions from '../actions/UserActions'
 
 export class Login extends Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props, context){
+    super(props, context)
+    this.loginFn = props.actions.login
   }
 
   componentDidMount(){
-    const currentUser = firebase.auth().currentUser
-    FirebaseConfig.getAuthUI().start('#firebaseui-auth', FirebaseConfig.getUIConfig())
+    FirebaseConfig.getAuthUI().start('#firebaseui-auth', FirebaseConfig.getUIConfig(this.loginFn))
   }
 
   render() {
@@ -28,4 +27,8 @@ const mapStateToProps = (state, ownProps) => ({
   user: state.user
 })
 
-export default connect(mapStateToProps, {login})(Login)
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(UserActions, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
 import asyncAwait from '../middleware/asyncAwait'
 import api from '../middleware/api'
 import rootReducer from '../reducers'

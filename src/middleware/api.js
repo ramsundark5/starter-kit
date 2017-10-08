@@ -1,8 +1,8 @@
 import { normalize, schema } from 'normalizr'
 import { camelizeKeys } from 'humps'
+import * as AppConstant from '../constants/AppConstants'
 
-
-const API_ROOT = 'https://api.github.com/'
+const API_ROOT = AppConstant.API_ROOT
 
 // Extracts the next page URL from Github API response.
 const getNextPageUrl = response => {
@@ -23,7 +23,7 @@ const getNextPageUrl = response => {
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
 const callApi = (endpoint, schema) => {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+  const fullUrl = (!endpoint.startsWith('http')) ? API_ROOT + endpoint : endpoint
 
   return fetch(fullUrl)
     .then(response =>
@@ -112,7 +112,11 @@ export default store => next => action => {
   }
 
   const [ requestType, successType, failureType ] = types
-  next(actionWith({ type: requestType }))
+
+  //ignore loading state if request type is null. useful for silent background sync
+  if(requestType){
+    next(actionWith({ type: requestType }))
+  }
 
   return callApi(endpoint, schema).then(
     response => next(actionWith({

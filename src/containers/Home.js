@@ -9,10 +9,6 @@ import HeaderComponent from '../components/HeaderComponent'
 
 class Home extends Component {
   static propTypes = {
-    // Injected by React Redux
-    errorMessage: PropTypes.string,
-    resetErrorMessage: PropTypes.func.isRequired,
-    // Injected by React Router
     children: PropTypes.node
   }
 
@@ -20,18 +16,10 @@ class Home extends Component {
     const { children } = this.props
     return (
       <div>
-        <HeaderComponent/>
         <span> Hello world </span>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  errorMessage: state.errorMessage,
-  inputValue: ownProps.location.pathname.substring(1)
-})
-
-export default withRouter(connect(mapStateToProps, {
-  resetErrorMessage
-})(Home))
+export default Home

@@ -4,12 +4,12 @@ import { login } from '../actions/UserActions'
 import FirebaseConfig from '../security/FirebaseConfig'
 import firebase from 'firebase'
 import 'firebaseui/dist/firebaseui.css'
-import { Header, Image, Modal } from 'semantic-ui-react'
+import { Header, Image, Modal, Button, Icon } from 'semantic-ui-react'
 
 export class Login extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
   }
 
   componentDidMount(){
@@ -18,22 +18,14 @@ export class Login extends Component {
   }
 
   render() {
-    return (
-      <div id="firebaseui-auth"></div>
+    return(
+      <div id="firebaseui-auth"/>
     )
   }
 }
 
-{/* <Modal>
-        <Modal.Header>Login modal</Modal.Header>
-        <Modal.Content>
-          <div id="firebaseui-auth"></div>
-        </Modal.Content>
-      </Modal> */}
 const mapStateToProps = (state, ownProps) => ({
-  user: state.user,
-  errorMessage: state.errorMessage,
-  inputValue: ownProps.location.pathname.substring(1)
+  user: state.user
 })
 
 export default connect(mapStateToProps, {login})(Login)

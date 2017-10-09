@@ -9,13 +9,15 @@ const config = {
     projectId: "flashmastery",
     storageBucket: "",
     messagingSenderId: Config.FIREBASE_MESSAGING_SENDER_ID
-  }
-  
+}
+firebase.initializeApp(config)
+const firebaseAuth =  firebase.auth()
+//const firestore = firebase.firestore()
+
 class FirebaseConfig{
 
   init(loginFunc){
-    firebase.initializeApp(config)
-    this.authUI = new firebaseui.auth.AuthUI(firebase.auth())  
+    this.authUI = new firebaseui.auth.AuthUI(firebaseAuth)  
   }
 
   getAuthUI(){
@@ -49,4 +51,5 @@ class FirebaseConfig{
 
 } 
 
-export default new FirebaseConfig()
+const firebaseConfig = new FirebaseConfig()
+export {firebaseConfig, firebaseAuth}

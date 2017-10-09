@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import FirebaseConfig from '../security/FirebaseConfig'
+import {firebaseConfig} from '../security/FirebaseConfig'
 import 'firebaseui/dist/firebaseui.css'
 import { bindActionCreators } from 'redux'
 import * as UserActions from '../actions/UserActions'
@@ -13,7 +13,7 @@ export class Login extends Component {
   }
 
   componentDidMount(){
-    FirebaseConfig.getAuthUI().start('#firebaseui-auth', FirebaseConfig.getUIConfig(this.loginFn))
+    firebaseConfig.getAuthUI().start('#firebaseui-auth', firebaseConfig.getUIConfig(this.loginFn))
   }
 
   render() {

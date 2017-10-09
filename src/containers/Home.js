@@ -9,7 +9,6 @@ class Home extends Component {
   }
 
   render() {
-    //const { children } = this.props
     return (
       <div>
         <span> Hello world </span>

@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/starter-kit
     docker:
-      - image: circleci/node:7.40
+      - image: circleci/node:7.10
     steps:
       - checkout
       - run:
